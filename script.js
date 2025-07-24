@@ -19,7 +19,9 @@ function draw() {
   background() //need to draw!!!
   playButton.pos = {x: 250, y: 400};
   
-
+  if (playButton.mouse.pressed) {
+    //introduce screen for catching apples
+  }
 }
 
 /* FUNCTIONS */
