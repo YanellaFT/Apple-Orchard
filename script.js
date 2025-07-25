@@ -7,19 +7,28 @@ function preload(){
 
 /* SETUP RUNS ONCE */
 function setup() {
-  createCanvas(500,500);
+  createCanvas(400,400);
 
-  playButton = new Sprite(-200, -200, 100, 100);
+  textAlign(CENTER,CENTER);
+
+  startButton = new Sprite(-200, -200, 60, 30);
+  textFont('cursive');
+  startButton.text = "START";
+  startButton.static = true;
 
 }
 
 /* DRAW LOOP REPEATS */
 function draw() {
-  //start screen
-  background() //need to draw!!!
-  playButton.pos = {x: 250, y: 400};
+  //SCREEN 0
+  background("#86cbd9") //need to draw!!!
+  startButton.pos = {x: 200, y: 325};
+  textFont('cursive');
+  text("Tryout", 100, 100);
+  textFont('Barrio');
+  text("Apple Orchard", 100, 150);
   
-  if (playButton.mouse.pressed) {
+  if (startButton.mouse.pressed) {
     //introduce screen for catching apples
   }
 }
