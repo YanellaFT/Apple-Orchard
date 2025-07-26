@@ -4,6 +4,9 @@ let fallingApple;
 let basket;
 let score = 0;
 let next1;
+let cutApple1;
+let cutApple2;
+let cutApple3;
 
 /* PRELOAD LOADS FILES */
 function preload(){
@@ -26,7 +29,16 @@ function setup() {
 
   basket = new Sprite(-200,-200, 100, 45, "k");
 
-  next1 = new Sprite(-200, -200, 60, 30);
+  next1 = new Sprite(-200, -200, 30, 15, "k");
+
+  cutApple1 = new Sprite(-200, -200);
+  cutApple1.diameter = 50;
+
+  cutApple2 = new Sprite(-200, -200);
+  cutApple2.diameter = 50;
+
+  cutApple3 = new Sprite(-200,-200);
+  cutApple3.diameter = 50;
 
   
   //SCREEN 0
@@ -48,7 +60,8 @@ function setup() {
 }
 
 function draw() {
-  
+
+  //home screen --> SCREEN 0
   if (screen == 0) {
     background("#86cbd9"); //DRAWWWW!!!!
     textSize(20);
@@ -75,7 +88,8 @@ function draw() {
     showScreen1();
     screen = 1;
   }
-  
+
+  //catching apples --> SCREEN 1
   if (screen == 1) {
     background("pink"); //DRAWWWW!!!!
     textSize(15);
@@ -102,9 +116,9 @@ function draw() {
 
     //stop basket at edges
     if (basket.x < 45) {
-      basket.vel = 0;
+      basket.x = 45;
     } else if (basket.x > 355) {
-      basket.vel = 0;
+      basket.x = 355;
     }
 
     //apples collides with basket
@@ -117,15 +131,48 @@ function draw() {
     }
 
     //continue button at score == 15
-    //FIX THIS
     if (score == 4) {
       textSize(10);
-      text("Press to \ncontinue", 380, 360);
+      text("Press to \ncontinue", 370, 355);
+      fallingApple.pos = {x: -200, y: -200};
+      basket.vel.x = 0
 
-      next1.pos = {x: 380, y: 380};
+      if (basket.x > 260) {
+        basket.x = 250;
+      }
+
+      next1.pos = {x: 375, y: 380};
+    }
+
+    if (next1.mouse.pressed()) {
+      print("next1 pressed");
+      showScreen2();
+      screen = 2;
+    }
+  } //end of screen == 1
+
+  if (screen == 2) {
+    background("blue"); //DRAWWWW!!!!
+    textSize(15);
+    text("Step 2: Cut the apples \nby clicking on them", 200, 35);
+
+    //position cutApples
+    cutApple1.pos = {x: 200, y: 120};
+    cutApple2.pos = {x: 200, y: 225};
+    cutApple3.pos = {x: 200, y: 330};
+
+    //cut Apples
+    if (cutApple1.mouse.pressed()) {
+      print("cutApple1 pressed");
+    }
+    if (cutApple2.mouse.pressed()) {
+      print("cutApple2 pressed");
+    }
+    if (cutApple3.mouse.pressed()) {
+      print("cutApple3 pressed");
     }
     
-  } //end of screen == 1
+  } //end of screen == 2
 
 } //end of draw funciton
 
@@ -138,4 +185,11 @@ function showScreen1() {
   fallingApple.vel.y = 3;
 
   basket.pos = {x: 200, y: 360};
+}
+
+function showScreen2() {
+  
+  basket.pos = {x: -200, y:-200};
+  next1.pos = {x: -200, y:-200};
+
 }
