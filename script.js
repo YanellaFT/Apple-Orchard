@@ -69,8 +69,8 @@ function showScreen1() {
   fallingApple.x = 50;
   fallingApple.vel.y = 2;
 
-  if (fallingApple >= height) {
-    fallingApples.y = 0;
+  if (fallingApple.y >= height) {
+    fallingApple.y = 0;
     fallingApple.x = random(width);
     fallingApple.vel.y = random(1,5);
   }
