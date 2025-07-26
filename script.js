@@ -7,6 +7,10 @@ let next1;
 let cutApple1;
 let cutApple2;
 let cutApple3;
+let cut1 = false;
+let cut2 = false;
+let cut3 = false;
+let next2;
 
 /* PRELOAD LOADS FILES */
 function preload(){
@@ -164,13 +168,29 @@ function draw() {
     //cut Apples
     if (cutApple1.mouse.pressed()) {
       print("cutApple1 pressed");
+      cut1 = true;
     }
     if (cutApple2.mouse.pressed()) {
       print("cutApple2 pressed");
+      cut2 = true;
     }
     if (cutApple3.mouse.pressed()) {
       print("cutApple3 pressed");
+      cut3 = true;
     }
+
+    if (cut1 == true && cut2 == true && cut3 == true) {
+      textSize(10);
+      text("Press to \ncontinue", 370, 355);
+      next2.pos = {x: 375, y: 380};
+    }
+
+    if (next2.mouse.pressed()) {
+      print("next2 pressed");
+      showScreen3();
+      screen = 3;
+    }
+
     
   } //end of screen == 2
 
@@ -192,4 +212,11 @@ function showScreen2() {
   basket.pos = {x: -200, y:-200};
   next1.pos = {x: -200, y:-200};
 
+}
+
+function showScreen3() {
+  cutApple1.pos = {x: -200, y:-200};
+  cutApple2.pos = {x: -200, y:-200};
+  cutApple3.pos = {x: -200, y:-200};
+  next2.pos = {x: -200, y: -200};
 }
