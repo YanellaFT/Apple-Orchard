@@ -86,7 +86,8 @@ function draw() {
 
 /* FUNCTIONS */
 function showScreen1() {
-  startButton.visible = false;
+  startButton.pos = {x: -100, y: -100};
   fallingApple.x = 50;
+  fallingApple.y = 0;
   fallingApple.vel.y = 2;
 }
