@@ -44,6 +44,8 @@ function setup() {
   cutApple3 = new Sprite(-200,-200);
   cutApple3.diameter = 50;
 
+  next2 = new Sprite(-200, -200, 30, 15, "k");
+
   
   //SCREEN 0
   background("#86cbd9"); //DRAWWWW!!!!
@@ -169,20 +171,18 @@ function draw() {
     if (cutApple1.mouse.pressed()) {
       print("cutApple1 pressed");
       cut1 = true;
-    }
-    if (cutApple2.mouse.pressed()) {
+    } else if (cutApple2.mouse.pressed()) {
       print("cutApple2 pressed");
       cut2 = true;
-    }
-    if (cutApple3.mouse.pressed()) {
+    } else if (cutApple3.mouse.pressed()) {
       print("cutApple3 pressed");
       cut3 = true;
     }
 
-    if (cut1 == true && cut2 == true && cut3 == true) {
+    if (cut1 && cut2 && cut3) {
       textSize(10);
       text("Press to \ncontinue", 370, 355);
-      next2.pos = {x: 375, y: 380};
+      next2.pos = {x: 370, y: 380};
     }
 
     if (next2.mouse.pressed()) {
@@ -191,8 +191,14 @@ function draw() {
       screen = 3;
     }
 
-    
   } //end of screen == 2
+
+  if (screen == 3) {
+    background("purple"); //DRAWWW!!!
+    textSize(15);
+    text("Step 2: Drag and drop the \ningredients to \nmake the dough", 200, 40);
+    
+  } //end of screen == 3
 
 } //end of draw funciton
 
