@@ -233,7 +233,7 @@ function draw() {
     //drag ingApple
     if (ingApple.mouse.pressing()) {
       ingAppleDrag = true;
-      ingApple.static = false
+      ingApple.static = false;
       print("ingApple");
     }
     if (ingAppleDrag) {
