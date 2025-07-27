@@ -246,7 +246,7 @@ function draw() {
     if (ingApple.mouse.pressing() && ingApple.collides(bowl)) {
       ingApple.pos = {x: -200, y: -200};
       ingAppleDrag = false;
-    }
+    } //does not work
   } //end of screen == 3
 
 } //end of draw funciton
