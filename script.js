@@ -11,6 +11,15 @@ let cut1 = false;
 let cut2 = false;
 let cut3 = false;
 let next2;
+let bowl;
+let ingApple;
+let ingEgg;
+let ingFlour;
+let ingSugar;
+let ingAppleDrag = false;
+let ingEggDrag = false;
+let ingFlourDrag = false;
+let ingSugarDrag = false;
 
 /* PRELOAD LOADS FILES */
 function preload(){
@@ -45,6 +54,18 @@ function setup() {
   cutApple3.diameter = 50;
 
   next2 = new Sprite(-200, -200, 30, 15, "k");
+
+  bowl = new Sprite(-200, -200, 40, 40, "k");
+
+  ingApple = new Sprite(-200, -200, "k");
+  ingApple.diameter = 30;
+
+  ingEgg = new Sprite(-200, -200, "k");
+  ingEgg.diameter = 30;
+
+  ingFlour = new Sprite(-200, -200, 30, 50, "k");
+
+  ingSugar = new Sprite(-200, -200, 30, 50, "k");
 
   
   //SCREEN 0
@@ -197,6 +218,24 @@ function draw() {
     background("purple"); //DRAWWW!!!
     textSize(15);
     text("Step 2: Drag and drop the \ningredients to \nmake the dough", 200, 40);
+
+    bowl.pos = {x: 200, y: 250};
+    ingApple.pos = {x: 300, y: 150};
+    ingEgg.pos = {x: 100, y: 150};
+    ingFlour.pos = {x: 300, y: 350};
+    ingSugar.pos = {x: 100, y: 350};
+
+    //movement of ingApple
+    if (mouseX > 265 && mouseX < 335 && mouseY > 115 && mouseY < 185 && mouse.pressed()) {
+      print("ingApple")
+      ingAppleDrag = true;
+    }
+    if (ingAppleDrag) {
+      ingApple.pos = {x: mouseX, y: mouseY};
+    }
+    if (ingApple.collides(bowl)) {
+      ingApple.visible = false;
+    }
     
   } //end of screen == 3
 
