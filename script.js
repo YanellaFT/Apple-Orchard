@@ -55,7 +55,8 @@ function setup() {
 
   next2 = new Sprite(-200, -200, 30, 15, "k");
 
-  bowl = new Sprite(-200, -200, 40, 40, "k");
+  bowl = new Sprite(-200, -200, 40, 40);
+  bowl.static = true;
 
   ingApple = new Sprite(-200, -200);
   ingApple.diameter = 30;
@@ -229,7 +230,23 @@ function draw() {
     ingFlour.pos = {x: 300, y: 350};
     ingSugar.pos = {x: 100, y: 350};
 
-    
+    //drag ingApple
+    if (ingApple.mouse.pressing()) {
+      ingAppleDrag = true;
+      ingApple.static = false
+      print("ingApple");
+    }
+    if (ingAppleDrag) {
+      ingApple.pos = {x: mouseX, y: mouseY};
+    }
+    if (!ingApple.mouse.pressing()) {
+      ingAppleDrag = false;
+      ingApple.static = true;
+    }
+    if (ingApple.mouse.pressing() && ingApple.collides(bowl)) {
+      ingApple.pos = {x: -200, y: -200};
+      ingAppleDrag = false;
+    }
   } //end of screen == 3
 
 } //end of draw funciton
