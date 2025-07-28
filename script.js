@@ -6,6 +6,7 @@ let score = 0;
 
 let next1;
 let next2;
+let next3;
 
 let cutApple1;
 let cutApple2;
@@ -25,6 +26,11 @@ let ingAppleDrag = false;
 let ingEggDrag = false;
 let ingFlourDrag = false;
 let ingSugarDrag = false;
+
+let ingAppleAdded = false;
+let ingEggAdded = false;
+let ingFlourAdded = false;
+let ingSugarAdded = false;
 
 let appleImg;
 let basketImg;
@@ -102,6 +108,8 @@ function setup() {
   ingSugar = new Sprite(-200, -200, 30, 50);
   ingSugar.static = true;
 
+  next3 = new Sprite(-200, -200, 30, 15, "k");
+
   
   //SCREEN 0
   background("#86cbd9"); //DRAWWWW!!!!
@@ -151,8 +159,6 @@ function draw() {
   }  
   }
   
-
-
   //catching apples --> SCREEN 1
   if (screen == 1) {
     background("pink"); //DRAWWWW!!!!
@@ -216,6 +222,7 @@ function draw() {
     }
   } //end of screen == 1
 
+  //cutting apples --> SCREEN 2
   if (screen == 2) {
     background("blue"); //DRAWWWW!!!!
     textSize(15);
@@ -259,13 +266,22 @@ function draw() {
     text("Step 3: Drag and drop the \ningredients to \nmake the dough", 200, 40);
 
     bowl.pos = {x: 200, y: 250};
-    ingApple.pos = {x: 300, y: 150};
-    ingEgg.pos = {x: 100, y: 150};
-    ingFlour.pos = {x: 300, y: 350};
-    ingSugar.pos = {x: 100, y: 350};
+
+    if (!ingAppleAdded) {
+      ingApple.pos = {x: 300, y: 150};
+    }
+    if (!ingEggAdded) {
+      ingEgg.pos = {x: 100, y: 150};      
+    }
+    if (!ingFlourAdded) {
+      ingFlour.pos = {x: 300, y: 350};
+    }
+    if (!ingSugarAdded) {
+      ingSugar.pos = {x: 100, y: 350};
+    }
 
     //drag ingApple
-    if (ingApple.mouse.pressing()) {
+    if (!ingAppleAdded && ingApple.mouse.pressing()) {
       ingAppleDrag = true;
       ingApple.static = false;
       print("ingApple");
@@ -276,11 +292,92 @@ function draw() {
     if (ingAppleDrag) {
       ingApple.pos = {x: mouseX, y: mouseY};
     }
-    if (ingApple.collides(bowl)) {
+let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
+    if (appleDistanceToBowl < 35 && ingAppleDrag) {
       ingApple.pos = {x: -200, y: -200};
       ingAppleDrag = false;
-    } //does not work
+      ingApple.static = true;
+      ingAppleAdded = true;
+    }
+
+    //drag ingEgg
+    if (!ingEggAdded && ingEgg.mouse.pressing()) {
+      ingEggDrag = true;
+      ingEgg.static = false;
+      print("ingEgg");
+    } else if (!ingEgg.mouse.pressing()) {
+      ingEggDrag = false;
+      ingEgg.static = true;
+    }
+    if (ingEggDrag) {
+      ingEgg.pos = {x: mouseX, y: mouseY};
+    }
+    let eggDistanceToBowl = dist(ingEgg.x, ingEgg.y, bowl.x, bowl.y);
+    if (eggDistanceToBowl < 35 && ingEggDrag) {
+      ingEgg.pos = {x: -200, y: -200};
+      ingEggDrag = false;
+      ingEgg.static = true;
+      ingEggAdded = true;
+    }
+
+    //drag ingFlour
+    if (!ingFlourAdded && ingFlour.mouse.pressing()) {
+      ingFlourDrag = true;
+      ingFlour.static = false;
+      print("ingFlour");
+    } else if (!ingFlour.mouse.pressing()) {
+      ingFlourDrag = false;
+      ingFlour.static = true;
+    }
+    if (ingFlourDrag) {
+      ingFlour.pos = {x: mouseX, y: mouseY};
+    }
+    let flourDistanceToBowl = dist(ingFlour.x, ingFlour.y, bowl.x, bowl.y);
+    if (flourDistanceToBowl < 35 && ingFlourDrag) {
+      ingFlour.pos = {x: -200, y: -200};
+      ingFlourDrag = false;
+      ingFlour.static = true;
+      ingFlourAdded = true;
+    }
+
+    //drag ingSugar
+    if (!ingSugarAdded && ingSugar.mouse.pressing()) {
+      ingSugarDrag = true;
+      ingSugar.static = false;
+      print("ingSugar");
+    } else if (!ingSugar.mouse.pressing()) {
+      ingSugarDrag = false;
+      ingSugar.static = true;
+    }
+    if (ingSugarDrag) {
+      ingSugar.pos = {x: mouseX, y: mouseY};
+    }
+    let sugarDistanceToBowl = dist(ingSugar.x, ingSugar.y, bowl.x, bowl.y);
+    if (sugarDistanceToBowl < 35 && ingSugarDrag) {
+      ingSugar.pos = {x: -200, y: -200};
+      ingSugarDrag = false;
+      ingSugar.static = true;
+      ingSugarAdded = true;
+    }
+
+    if (ingAppleAdded && ingEggAdded && ingFlourAdded && ingSugarAdded) {
+      textSize(10);
+      text("Press to \ncontinue", 370, 355);
+      next3.pos = {x: 370, y: 380};
+    }
+
+    if (next3.mouse.pressed()) {
+      print("next3 pressed");
+      showScreen4();
+      screen = 4;
+     }
+    
   } //end of screen == 3
+
+  //bake cake --> SCREEN 4
+  if (screen == 4) {
+    background("yellow");
+  }
 
 } //end of draw funciton
 
@@ -307,4 +404,9 @@ function showScreen3() {
   cutApple2.pos = {x: -200, y:-200};
   cutApple3.pos = {x: -200, y:-200};
   next2.pos = {x: -200, y: -200};
+}
+
+function showScreen4() {
+  bowl.pos = {x: -200, y: -200};
+  next3.pos = {x: -200, y: -200};
 }
