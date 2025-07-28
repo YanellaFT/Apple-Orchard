@@ -34,6 +34,7 @@ function preload(){
   //images
   appleImg = loadImage("assets/wholeAppleImg.png");
   basketImg = loadImage("assets/basketImg.png");
+  appleScreen2Img = loadImage("assets/appleScreeb2.png");
 }
 
 /* SETUP RUNS ONCE */
@@ -57,20 +58,30 @@ function setup() {
   basket = new Sprite(-200,-200, 100, 45, "k");
   basket.image = basketImg;
   basketImg.width = 100;
+  basketImg.height = 100;
 
   next1 = new Sprite(-200, -200, 30, 15, "k");
 
   cutApple1 = new Sprite(-200, -200);
+  cutApple1.static = true;
   cutApple1.diameter = 50;
-  //cutApple1.image = appleImg;
+  cutApple1.image = appleScreen2Img;
+  appleScreen2Img.width = 50;
+  appleScreen2Img.height = 50;
 
   cutApple2 = new Sprite(-200, -200);
+  cutApple2.static = true;
   cutApple2.diameter = 50;
-  //cutApple2.image = appleImg;
+  cutApple2.image = appleScreen2Img;
+  appleScreen2Img.width = 50;
+  appleScreen2Img.height = 50;
 
   cutApple3 = new Sprite(-200,-200);
+  cutApple3.static = true;
   cutApple3.diameter = 50;
-  //cutApple3.image = appleImg;
+  cutApple3.image = appleScreen2Img;
+  appleScreen2Img.width = 50;
+  appleScreen2Img.height = 50;
 
   next2 = new Sprite(-200, -200, 30, 15, "k");
 
@@ -218,6 +229,7 @@ function draw() {
     //cut Apples
     if (cutApple1.mouse.pressed()) {
       print("cutApple1 pressed");
+      //cutApple1.image = ;
       cut1 = true;
     } else if (cutApple2.mouse.pressed()) {
       print("cutApple2 pressed");
