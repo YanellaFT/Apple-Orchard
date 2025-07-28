@@ -35,9 +35,12 @@ let ingSugarAdded = false;
 let appleImg;
 let basketImg;
 
+let screen0bg;
+
 /* PRELOAD LOADS FILES */
 function preload(){
   //images
+  screen0bg = loadImage("assets/screen0bg.png");
   appleImg = loadImage("assets/wholeAppleImg.png");
   basketImg = loadImage("assets/basketImg.png");
   appleScreen2Img = loadImage("assets/appleScreeb2.png");
@@ -112,7 +115,7 @@ function setup() {
 
   
   //SCREEN 0
-  background("#86cbd9"); //DRAWWWW!!!!
+  background(screen0bg); //DRAWWWW!!!!"#86cbd9"
   textSize(20);
   textFont('cursive');
   text("Welcome to", 200, 75);
@@ -133,10 +136,10 @@ function draw() {
 
   //home screen --> SCREEN 0
   if (screen == 0) {
-    background("#86cbd9"); //DRAWWWW!!!!
-    textSize(20);
+    background(screen0bg); //"#86cbd9"
+    /*textSize(20);
     textFont('cursive');
-    text("Welcome to", 200, 75);
+    text("Welcome to", 200, 75);*/
     
     textFont('Barrio');
     textSize(40);
@@ -144,9 +147,8 @@ function draw() {
     text("Apple \n               Orchard", 150, 150);
     
     textFont('cursive');
-    textSize(20);
     fill("black");
-    text("Press START to create your \nown apple pie!", 200, 240);
+    /*text("Press START to create your \nown apple pie!", 200, 240);*/
     
     //display startButton
     startButton.pos = {x: 200, y: 325};
