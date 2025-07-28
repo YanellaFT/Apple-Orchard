@@ -3,27 +3,37 @@ let screen = 0;
 let fallingApple;
 let basket;
 let score = 0;
+
 let next1;
+let next2;
+
 let cutApple1;
 let cutApple2;
 let cutApple3;
+
 let cut1 = false;
 let cut2 = false;
 let cut3 = false;
-let next2;
-let bowl;
-let ingApple;
-let ingEgg;
-let ingFlour;
-let ingSugar;
+
+let bowl; //middle
+let ingApple; //top right
+let ingEgg; //top left
+let ingFlour; //bottom right
+let ingSugar; //bottom left
+
 let ingAppleDrag = false;
 let ingEggDrag = false;
 let ingFlourDrag = false;
 let ingSugarDrag = false;
 
+let appleImg;
+let basketImg;
+
 /* PRELOAD LOADS FILES */
 function preload(){
-  
+  //images
+  appleImg = loadImage("assets/wholeAppleImg.png");
+  basketImg = loadImage("assets/basketImg.png");
 }
 
 /* SETUP RUNS ONCE */
@@ -39,19 +49,28 @@ function setup() {
 
   fallingApple = new Sprite(-200,-200);
   fallingApple.diameter = 20;
+  fallingApple.image = appleImg;
+  appleImg.width = 20;
+  appleImg.height = 20;
+
 
   basket = new Sprite(-200,-200, 100, 45, "k");
+  basket.image = basketImg;
+  basketImg.width = 100;
 
   next1 = new Sprite(-200, -200, 30, 15, "k");
 
   cutApple1 = new Sprite(-200, -200);
   cutApple1.diameter = 50;
+  //cutApple1.image = appleImg;
 
   cutApple2 = new Sprite(-200, -200);
   cutApple2.diameter = 50;
+  //cutApple2.image = appleImg;
 
   cutApple3 = new Sprite(-200,-200);
   cutApple3.diameter = 50;
+  //cutApple3.image = appleImg;
 
   next2 = new Sprite(-200, -200, 30, 15, "k");
 
@@ -113,13 +132,15 @@ function draw() {
     //display startButton
     startButton.pos = {x: 200, y: 325};
     startButton.color = "yellow";
-  }
-  
-  if (startButton.mouse.pressed()) {
+
+    if (startButton.mouse.pressed()) {
     print("startButton pressed");
     showScreen1();
     screen = 1;
+  }  
   }
+  
+
 
   //catching apples --> SCREEN 1
   if (screen == 1) {
@@ -128,8 +149,9 @@ function draw() {
     text("Step 1: Collect all the apples \nby using the arrow keys", 120, 35);
 
     textSize(13);
-    text("Apples Collected: " + score, 330, 35);    
-    
+    text("Apples Collected: " + score, 330, 35);   
+
+  
     //falling apples
     if (fallingApple.y >= height) {
       fallingApple.y = 0;
@@ -154,7 +176,7 @@ function draw() {
     }
 
     //apples collides with basket
-    if (fallingApple.collides(basket)) {
+    if (fallingApple.overlaps(basket)) {
       fallingApple.y = 0;
       fallingApple.x = random(width);
       fallingApple.vel.y = random(3,6);
@@ -222,7 +244,7 @@ function draw() {
   if (screen == 3) {
     background("purple"); //DRAWWW!!!
     textSize(15);
-    text("Step 2: Drag and drop the \ningredients to \nmake the dough", 200, 40);
+    text("Step 3: Drag and drop the \ningredients to \nmake the dough", 200, 40);
 
     bowl.pos = {x: 200, y: 250};
     ingApple.pos = {x: 300, y: 150};
@@ -235,15 +257,14 @@ function draw() {
       ingAppleDrag = true;
       ingApple.static = false;
       print("ingApple");
+    } else if (!ingApple.mouse.pressing()) {
+      ingAppleDrag = false;
+      ingApple.static = true;
     }
     if (ingAppleDrag) {
       ingApple.pos = {x: mouseX, y: mouseY};
     }
-    if (!ingApple.mouse.pressing()) {
-      ingAppleDrag = false;
-      ingApple.static = true;
-    }
-    if (ingApple.mouse.pressing() && ingApple.collides(bowl)) {
+    if (ingApple.collides(bowl)) {
       ingApple.pos = {x: -200, y: -200};
       ingAppleDrag = false;
     } //does not work
