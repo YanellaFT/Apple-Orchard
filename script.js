@@ -42,7 +42,7 @@ function preload(){
   //images
   screen0bg = loadImage("assets/screen0bg.png");
   appleImg = loadImage("assets/wholeAppleImg.png");
-  basketImg = loadImage("assets/basketImg.png");
+  basketImg = loadImage("assets/basket.png");
   appleScreen2Img = loadImage("assets/appleScreeb2.png");
   cutAppleImg = loadImage("assets/cutApple.png");
   eggImg = loadImage("assets/eggs.png");
@@ -406,13 +406,14 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
 
 /* FUNCTIONS */
 function showScreen1() {
+  clear();
   startButton.pos = {x: -100, y: -100};
   
   fallingApple.x = 50;
   fallingApple.y = 0;
   fallingApple.vel.y = 3;
 
-  basket.pos = {x: 200, y: 360};
+  basket.pos = {x: 200, y: 340};
 }
 
 function showScreen2() {
