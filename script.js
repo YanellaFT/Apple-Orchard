@@ -44,6 +44,11 @@ function preload(){
   appleImg = loadImage("assets/wholeAppleImg.png");
   basketImg = loadImage("assets/basketImg.png");
   appleScreen2Img = loadImage("assets/appleScreeb2.png");
+  cutAppleImg = loadImage("assets/cutApple.png");
+  eggImg = loadImage("assets/eggs.png");
+  flourImg = loadImage("assets/flour.png");
+  sugarImg = loadImage("assets/sugar.png");
+  mixingBowlImg = loadImage("assets/mixingbowl.png");
 }
 
 /* SETUP RUNS ONCE */
@@ -63,13 +68,14 @@ function setup() {
   appleImg.width = 20;
   appleImg.height = 20;
 
-
   basket = new Sprite(-200,-200, 100, 45, "k");
   basket.image = basketImg;
   basketImg.width = 100;
   basketImg.height = 100;
 
   next1 = new Sprite(-200, -200, 30, 15, "k");
+  next1.color = "yellow";
+  next1.text = "-->";
 
   cutApple1 = new Sprite(-200, -200);
   cutApple1.static = true;
@@ -92,26 +98,39 @@ function setup() {
   appleScreen2Img.width = 50;
   appleScreen2Img.height = 50;
 
+  cutAppleImg.width = 90;
+  
   next2 = new Sprite(-200, -200, 30, 15, "k");
+  next2.color = "yellow";
+  next2.text = "-->";
 
-  bowl = new Sprite(-200, -200, 40, 40);
+  bowl = new Sprite(-200, -200);
   bowl.static = true;
+  bowl.image = mixingBowlImg;
+  mixingBowlImg.width = 110;
 
   ingApple = new Sprite(-200, -200);
-  ingApple.diameter = 30;
   ingApple.static = true;
+  ingApple.image = cutAppleImg;
 
   ingEgg = new Sprite(-200, -200);
-  ingEgg.diameter = 30;
   ingEgg.static = true;
+  ingEgg.image = eggImg;
+  eggImg.width = 50;
 
-  ingFlour = new Sprite(-200, -200, 30, 50);
+  ingFlour = new Sprite(-200, -200);
   ingFlour.static = true;
+  ingFlour.image = flourImg;
+  flourImg.width = 50;
 
-  ingSugar = new Sprite(-200, -200, 30, 50);
+  ingSugar = new Sprite(-200, -200);
   ingSugar.static = true;
+  ingSugar.image = sugarImg;
+  sugarImg.width = 50;
 
   next3 = new Sprite(-200, -200, 30, 15, "k");
+  next3.color = "yellow";
+  next3.text = "-->";
 
   
   //SCREEN 0
@@ -238,13 +257,15 @@ function draw() {
     //cut Apples
     if (cutApple1.mouse.pressed()) {
       print("cutApple1 pressed");
-      //cutApple1.image = ;
+      cutApple1.image = cutAppleImg;
       cut1 = true;
     } else if (cutApple2.mouse.pressed()) {
       print("cutApple2 pressed");
+      cutApple2.image = cutAppleImg;
       cut2 = true;
     } else if (cutApple3.mouse.pressed()) {
       print("cutApple3 pressed");
+      cutApple3.image = cutAppleImg;
       cut3 = true;
     }
 
@@ -265,21 +286,21 @@ function draw() {
   if (screen == 3) {
     background("purple"); //DRAWWW!!!
     textSize(15);
-    text("Step 3: Drag and drop the \ningredients to \nmake the dough", 200, 40);
+    text("Step 3: Drag and drop the \ningredients into the \nbowl make the dough", 200, 40);
 
-    bowl.pos = {x: 200, y: 250};
+    bowl.pos = {x: 200, y: 300};
 
     if (!ingAppleAdded) {
       ingApple.pos = {x: 300, y: 150};
     }
     if (!ingEggAdded) {
-      ingEgg.pos = {x: 100, y: 150};      
+      ingEgg.pos = {x: 100, y: 230};      
     }
     if (!ingFlourAdded) {
-      ingFlour.pos = {x: 300, y: 350};
+      ingFlour.pos = {x: 300, y: 400};
     }
     if (!ingSugarAdded) {
-      ingSugar.pos = {x: 100, y: 350};
+      ingSugar.pos = {x: 100, y:400};
     }
 
     //drag ingApple
