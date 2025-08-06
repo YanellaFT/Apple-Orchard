@@ -425,16 +425,32 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
 
     bakeCake.pos = {x: 200, y: 200};
 
-    if (bakeCake.mouse.pressed()) {
+    if (bakeCake.mouse.pressed() && clicks > 0) {
       clicks = clicks - 1;
     }
 
     if (clicks == 0) {
+      clicks = 0;
       textSize(10);
       text("Press to \ncontinue", 370, 355);
       next4.pos = {x: 370, y: 380};
     }
+
+    if (next4.mouse.pressed()) {
+      print("next4 pressed");
+      showScreen5();
+      screen = 5;
+    }
   } //end of screen == 4
+
+  //end screen --> SCREEN 5
+  if (screen == 5) {
+    background("pink"); //DRAWWW!!!
+    textSize(20);
+    text("Congratulations!", 200, 40);
+    textSize(15);
+    text("You made your own \napple pie! Enjoy :)", 200, 80);
+  }
 
 } //end of draw funciton
 
@@ -451,11 +467,8 @@ function showScreen1() {
 }
 
 function showScreen2() {
-  
   basket.pos = {x: -200, y:-200};
   next1.pos = {x: -200, y:-200};
-
-
 }
 
 function showScreen3() {
@@ -468,4 +481,9 @@ function showScreen3() {
 function showScreen4() {
   bowl.pos = {x: -200, y: -200};
   next3.pos = {x: -200, y: -200};
+}
+
+function showScreen5() {
+  bakeCake.pos = {x: -200, y: -200};
+  next4.pos = {x: -200, y: -200};
 }
