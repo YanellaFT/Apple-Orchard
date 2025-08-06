@@ -38,6 +38,9 @@ let basketImg;
 let clicks = 20
 let bakeCake;
 
+let playAgainButton;
+let playAgain = false;
+
 let screen0bg;
 
 /* PRELOAD LOADS FILES */
@@ -141,6 +144,9 @@ function setup() {
   next4 = new Sprite(-200, -200, 30, 15, "k");
   next4.color = "yellow";
   next4.text = "-->";
+
+  playAgainButton = new Sprite(-200, -200, 100, 100, "k");
+  playAgainButton.text = "Make another \ncake!";
   
   //SCREEN 0
   background(screen0bg); //DRAWWWW!!!!"#86cbd9"
@@ -190,7 +196,7 @@ function draw() {
   }
   
   //catching apples --> SCREEN 1
-  if (screen == 1) {
+  if (screen == 1 || playAgain == true) {
     background("pink"); //DRAWWWW!!!!
     textSize(15);
     text("Step 1: Collect all the apples \nby using the arrow keys", 120, 35);
@@ -198,6 +204,7 @@ function draw() {
     textSize(13);
     text("Apples Collected: " + score, 330, 35);   
 
+    playAgain = false;
   
     //falling apples
     if (fallingApple.y >= height) {
@@ -440,6 +447,10 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
       print("next4 pressed");
       showScreen5();
       screen = 5;
+
+      if (playAgainButton.mouse.pressed()) {
+        playAgain = true;
+      }
     }
   } //end of screen == 4
 
@@ -450,6 +461,11 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
     text("Congratulations!", 200, 40);
     textSize(15);
     text("You made your own \napple pie! Enjoy :)", 200, 80);
+
+    playAgainButton.pos = {x: 200, y: 200};
+    if (playAgainButton.mouse.pressed()) {
+      playAgain = true;
+    }
   }
 
 } //end of draw funciton
