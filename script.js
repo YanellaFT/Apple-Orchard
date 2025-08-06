@@ -35,6 +35,9 @@ let ingSugarAdded = false;
 let appleImg;
 let basketImg;
 
+let clicks = 20
+let bakeCake;
+
 let screen0bg;
 
 /* PRELOAD LOADS FILES */
@@ -49,6 +52,7 @@ function preload(){
   flourImg = loadImage("assets/flour.png");
   sugarImg = loadImage("assets/sugar.png");
   mixingBowlImg = loadImage("assets/mixingbowl.png");
+  knifeImg = loadImg("assets/knife.png");
 }
 
 /* SETUP RUNS ONCE */
@@ -132,6 +136,11 @@ function setup() {
   next3.color = "yellow";
   next3.text = "-->";
 
+  bakeCake = new Sprite(-200, -200, 70, 50, "k");
+
+  next4 = new Sprite(-200, -200, 30, 15, "k");
+  next4.color = "yellow";
+  next4.text = "-->";
   
   //SCREEN 0
   background(screen0bg); //DRAWWWW!!!!"#86cbd9"
@@ -218,7 +227,7 @@ function draw() {
       fallingApple.y = 0;
       fallingApple.x = random(width);
       fallingApple.vel.y = random(3,6);
-      fallingApple.direction = "down";
+      //fallingApple.direction = "down";
       score = score + 1;
     }
 
@@ -248,6 +257,11 @@ function draw() {
     background("blue"); //DRAWWWW!!!!
     textSize(15);
     text("Step 2: Cut the apples \nby clicking on them", 200, 35);
+    /*knifeImg.width = 30;
+    knifeImg.height = 30;
+    //noCursor();*/
+    //cursor('knife.png');
+
 
     //position cutApples
     cutApple1.pos = {x: 200, y: 120};
@@ -283,10 +297,13 @@ function draw() {
 
   } //end of screen == 2
 
+  //adding ingredients --> SCREEN 3
   if (screen == 3) {
     background("purple"); //DRAWWW!!!
     textSize(15);
     text("Step 3: Drag and drop the \ningredients into the \nbowl make the dough", 200, 40);
+
+    //cursor('grab');
 
     bowl.pos = {x: 200, y: 300};
 
@@ -400,7 +417,24 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
   //bake cake --> SCREEN 4
   if (screen == 4) {
     background("yellow");
-  }
+    textSize(15);
+    text("Step 4: Click on the cake to \nbake it", 120, 35);
+
+    textSize(13);
+    text( clicks + " more clicks \nneeded", 330, 35);  
+
+    bakeCake.pos = {x: 200, y: 200};
+
+    if (bakeCake.mouse.pressed()) {
+      clicks = clicks - 1;
+    }
+
+    if (clicks == 0) {
+      textSize(10);
+      text("Press to \ncontinue", 370, 355);
+      next4.pos = {x: 370, y: 380};
+    }
+  } //end of screen == 4
 
 } //end of draw funciton
 
@@ -420,6 +454,7 @@ function showScreen2() {
   
   basket.pos = {x: -200, y:-200};
   next1.pos = {x: -200, y:-200};
+
 
 }
 
