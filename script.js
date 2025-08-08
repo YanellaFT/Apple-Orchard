@@ -42,8 +42,9 @@ let playAgainButton;
 let playAgain = false;
 
 let screen0bg;
+let screen1bg;
 
-/* PRELOAD LOADS FILES */
+/*Preload*/
 function preload(){
   //images
   screen0bg = loadImage("assets/screen0bg.png");
@@ -55,10 +56,13 @@ function preload(){
   flourImg = loadImage("assets/flour.png");
   sugarImg = loadImage("assets/sugar.png");
   mixingBowlImg = loadImage("assets/mixingbowl.png");
-  knifeImg = loadImg("assets/knife.png");
+  //knifeImg = loadImgage("assets/knife.png");
+  screen1bg = loadImage("assets/screen1bg.png");
+  screen2bg = loadImage("assets/screen2bg.png");
+  screen3bg = loadImage("assets/screen3bg.png");
 }
 
-/* SETUP RUNS ONCE */
+/*Setup*/
 function setup() {
   createCanvas(400,400);
 
@@ -196,8 +200,8 @@ function draw() {
   }
   
   //catching apples --> SCREEN 1
-  if (screen == 1 || playAgain == true) {
-    background("pink"); //DRAWWWW!!!!
+  if (screen == 1 || playAgain) {
+    background(screen1bg); //DRAWWWW!!!!
     textSize(15);
     text("Step 1: Collect all the apples \nby using the arrow keys", 120, 35);
 
@@ -261,7 +265,7 @@ function draw() {
 
   //cutting apples --> SCREEN 2
   if (screen == 2) {
-    background("blue"); //DRAWWWW!!!!
+    background(screen2bg); //DRAWWWW!!!!
     textSize(15);
     text("Step 2: Cut the apples \nby clicking on them", 200, 35);
     /*knifeImg.width = 30;
@@ -306,7 +310,7 @@ function draw() {
 
   //adding ingredients --> SCREEN 3
   if (screen == 3) {
-    background("purple"); //DRAWWW!!!
+    background(screen3bg); //DRAWWW!!!
     textSize(15);
     text("Step 3: Drag and drop the \ningredients into the \nbowl make the dough", 200, 40);
 
