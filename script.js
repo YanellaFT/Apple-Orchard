@@ -68,8 +68,9 @@ function setup() {
 
   textAlign(CENTER,CENTER);
   
+  noStroke();
   //buttons
-  startButton = new Sprite(-200, -200, 70, 35);
+  startButton = new Sprite(-200, -200, 73, 37);
   startButton.text = "START";
   startButton.static = true;
 
