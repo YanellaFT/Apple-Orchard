@@ -37,12 +37,16 @@ let basketImg;
 
 let clicks = 20
 let bakeCake;
+let pie;
 
 let playAgainButton;
 let playAgain = false;
 
 let screen0bg;
 let screen1bg;
+let screen2bg;
+let screen3bg; 
+let screen4bg;
 
 /*Preload*/
 function preload(){
@@ -60,6 +64,8 @@ function preload(){
   screen1bg = loadImage("assets/screen1bg.png");
   screen2bg = loadImage("assets/screen2bg.png");
   screen3bg = loadImage("assets/screen3bg.png");
+  screen4bg = loadImage("assets/screen4bg.png");
+  pieImg = loadImage("assets/pie.png");
 }
 
 /*Setup*/
@@ -144,7 +150,10 @@ function setup() {
   next3.color = "yellow";
   next3.text = "-->";
 
-  bakeCake = new Sprite(-200, -200, 70, 50, "k");
+  bakeCake = new Sprite(-200, -200, "k");
+  bakeCake.image = pieImg;
+  pieImg.width = 70;
+  //pie.x = bakeCake.x;
 
   next4 = new Sprite(-200, -200, 30, 15, "k");
   next4.color = "yellow";
@@ -239,7 +248,7 @@ function draw() {
       fallingApple.y = 0;
       fallingApple.x = random(width);
       fallingApple.vel.y = random(3,6);
-      //fallingApple.direction = "down";
+      fallingApple.direction = "down";
       score = score + 1;
     }
 
@@ -428,14 +437,14 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
 
   //bake cake --> SCREEN 4
   if (screen == 4) {
-    background("yellow");
+    background(screen4bg);
     textSize(15);
     text("Step 4: Click on the cake to \nbake it", 120, 35);
 
     textSize(13);
     text( clicks + " more clicks \nneeded", 330, 35);  
 
-    bakeCake.pos = {x: 200, y: 200};
+    bakeCake.pos = {x: 200, y: 230};
 
     if (bakeCake.mouse.pressed() && clicks > 0) {
       clicks = clicks - 1;
