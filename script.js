@@ -150,7 +150,7 @@ function setup() {
   next4.text = "-->";
 
   playAgainButton = new Sprite(-200, -200, 100, 100, "k");
-  playAgainButton.text = "Make another \ncake!";
+  playAgainButton.text = "Make another \npie!";
   
   //SCREEN 0
   background(screen0bg); //DRAWWWW!!!!"#86cbd9"
@@ -192,15 +192,16 @@ function draw() {
     startButton.pos = {x: 200, y: 325};
     startButton.color = "yellow";
 
-    if (startButton.mouse.pressed()) {
+    if (startButton.mouse.pressed() || playAgain) {
     print("startButton pressed");
     showScreen1();
     screen = 1;
+    playAgain = false;
   }  
   }
   
   //catching apples --> SCREEN 1
-  if (screen == 1 || playAgain) {
+  if (screen == 1) {
     background(screen1bg); //DRAWWWW!!!!
     textSize(15);
     text("Step 1: Collect all the apples \nby using the arrow keys", 120, 35);
@@ -208,8 +209,7 @@ function draw() {
     textSize(13);
     text("Apples Collected: " + score, 330, 35);   
 
-    playAgain = false;
-  
+    
     //falling apples
     if (fallingApple.y >= height) {
       fallingApple.y = 0;
@@ -468,6 +468,7 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
 
     playAgainButton.pos = {x: 200, y: 200};
     if (playAgainButton.mouse.pressed()) {
+      print("playAgainButton pressed");
       playAgain = true;
     }
   }
