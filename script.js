@@ -262,7 +262,7 @@ function draw() {
     }
 
     //continue button at score == 15
-    if (score == 4) {
+    if (score == 15) {
       textSize(10);
       text("Press to \ncontinue", 370, 355);
       fallingApple.pos = {x: -200, y: -200};
