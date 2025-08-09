@@ -472,7 +472,7 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
     }
   } //end of screen == 4
 
-  //end screen --> SCREEN 5
+  //finish screen --> SCREEN 5
   if (screen == 5) {
     background("pink"); //DRAWWW!!!
     textSize(20);
