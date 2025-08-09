@@ -48,6 +48,7 @@ let screen2bg;
 let screen3bg; 
 let screen4bg;
 
+
 /*Preload*/
 function preload(){
   //images
@@ -80,13 +81,12 @@ function setup() {
   startButton.text = "START";
   startButton.static = true;
 
-  fallingApple = new Sprite(-200,-200);
-  fallingApple.diameter = 20;
+  fallingApple = new Sprite(-200,-200, 10);
   fallingApple.image = appleImg;
   appleImg.width = 20;
   appleImg.height = 20;
 
-  basket = new Sprite(-200,-200, 100, 45, "k");
+  basket = new Sprite(-200,-200, 100, 60, "k");
   basket.image = basketImg;
   basketImg.width = 100;
   basketImg.height = 100;
@@ -150,10 +150,13 @@ function setup() {
   next3.color = "yellow";
   next3.text = "-->";
 
-  bakeCake = new Sprite(-200, -200, "k");
+  bakeCake = new Sprite(-200, -200, 70, "k");
   bakeCake.image = pieImg;
   pieImg.width = 70;
-  //pie.x = bakeCake.x;
+  pieImg.height = 50;
+
+  cover = new Sprite(-200, -200, 20, "k");  
+  cover.color = "white";
 
   next4 = new Sprite(-200, -200, 30, 15, "k");
   next4.color = "yellow";
@@ -244,7 +247,7 @@ function draw() {
     }
 
     //apples collides with basket
-    if (fallingApple.overlaps(basket)) {
+    if (fallingApple.collides(basket)) {
       fallingApple.y = 0;
       fallingApple.x = random(width);
       fallingApple.vel.y = random(3,6);
@@ -322,7 +325,7 @@ function draw() {
   if (screen == 3) {
     background(screen3bg); //DRAWWW!!!
     textSize(15);
-    text("Step 3: Drag and drop the \ningredients into the \nbowl make the dough", 200, 40);
+    text("Step 3: Drag and drop the \ningredients into the \nbowl to make the dough", 200, 40);
 
     //cursor('grab');
 
@@ -439,12 +442,13 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
   if (screen == 4) {
     background(screen4bg);
     textSize(15);
-    text("Step 4: Click on the cake to \nbake it", 120, 35);
+    text("Step 4: Click on the pie to \nbake it", 120, 45);
 
     textSize(13);
-    text( clicks + " more clicks \nneeded", 330, 35);  
+    text( clicks + " more clicks \nneeded", 330, 45);  
 
     bakeCake.pos = {x: 200, y: 230};
+    cover.pos = {x: 75, y: 5};
 
     if (bakeCake.mouse.pressed() && clicks > 0) {
       clicks = clicks - 1;
@@ -481,7 +485,7 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
       print("playAgainButton pressed");
       playAgain = true;
     }
-  }
+  } //end of screen == 5;
 
 } //end of draw funciton
 
@@ -516,5 +520,6 @@ function showScreen4() {
 
 function showScreen5() {
   bakeCake.pos = {x: -200, y: -200};
+  cover.pos = {x: -200, y: -200};
   next4.pos = {x: -200, y: -200};
 }
