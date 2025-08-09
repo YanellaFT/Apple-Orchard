@@ -37,16 +37,19 @@ let basketImg;
 
 let clicks = 20
 let bakeCake;
-let pie;
+let pieImg;
 
 let playAgainButton;
 let playAgain = false;
+let cake;
+let apple;
 
 let screen0bg;
 let screen1bg;
 let screen2bg;
 let screen3bg; 
 let screen4bg;
+let screen5bg;
 
 
 /*Preload*/
@@ -66,7 +69,9 @@ function preload(){
   screen2bg = loadImage("assets/screen2bg.png");
   screen3bg = loadImage("assets/screen3bg.png");
   screen4bg = loadImage("assets/screen4bg.png");
+  screen5bg = loadImage("assets/confetti.gif");
   pieImg = loadImage("assets/pie.png");
+  applePieImg = loadImage("assets/applePie.png");
 }
 
 /*Setup*/
@@ -152,8 +157,6 @@ function setup() {
 
   bakeCake = new Sprite(-200, -200, 70, "k");
   bakeCake.image = pieImg;
-  pieImg.width = 70;
-  pieImg.height = 50;
 
   cover = new Sprite(-200, -200, 20, "k");  
   cover.color = "white";
@@ -162,8 +165,11 @@ function setup() {
   next4.color = "yellow";
   next4.text = "-->";
 
-  playAgainButton = new Sprite(-200, -200, 100, 100, "k");
-  playAgainButton.text = "Make another \npie!";
+  playAgainButton = new Sprite(-200, -200, 80, 50, "k");
+  playAgainButton.text = "Make \nanother \npie!";
+  playAgainButton.color = "yellow";
+  cake = new Sprite(-200, -200, 70, "k");
+  cake.image = applePieImg;
   
   //SCREEN 0
   background(screen0bg); //DRAWWWW!!!!"#86cbd9"
@@ -448,6 +454,8 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
     text( clicks + " more clicks \nneeded", 330, 45);  
 
     bakeCake.pos = {x: 200, y: 230};
+    pieImg.width = 70;
+    pieImg.height = 50;
     cover.pos = {x: 75, y: 5};
 
     if (bakeCake.mouse.pressed() && clicks > 0) {
@@ -474,13 +482,15 @@ let appleDistanceToBowl = dist(ingApple.x, ingApple.y, bowl.x, bowl.y);
 
   //finish screen --> SCREEN 5
   if (screen == 5) {
-    background("pink"); //DRAWWW!!!
+    background(screen5bg); //DRAWWW!!!
     textSize(20);
-    text("Congratulations!", 200, 40);
+    text("Congratulations!", 200, 80);
     textSize(15);
-    text("You made your own \napple pie! Enjoy :)", 200, 80);
+    text("You made your own \napple pie! Enjoy :)", 200, 120);
 
-    playAgainButton.pos = {x: 200, y: 200};
+    cake.pos = {x: 200, y: 270};
+
+    //playAgainButton.pos = {x: 200, y: 350};
     if (playAgainButton.mouse.pressed()) {
       print("playAgainButton pressed");
       playAgain = true;
